@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <!-- 背景圓形 -->
+  <circle cx="250" cy="250" r="200" fill="#f0f9ff" />
+  
+  <!-- 404 文字 -->
+  <text x="250" y="280" font-family="Arial, sans-serif" font-size="120" font-weight="bold" text-anchor="middle" fill="#3b82f6">404</text>
+  
+  <!-- 表情符號 -->
+  <circle cx="180" cy="180" r="25" fill="#3b82f6" />
+  <circle cx="320" cy="180" r="25" fill="#3b82f6" />
+  
+  <!-- 悲傷的嘴巴 -->
+  <path d="M180 350 Q250 300 320 350" stroke="#3b82f6" stroke-width="10" fill="none" />
+</svg>
