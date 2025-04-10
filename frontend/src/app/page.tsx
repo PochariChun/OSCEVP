@@ -1,62 +1,88 @@
-import React from "react";
+'use client';
+
+import React, { useState, useEffect } from "react";
 import Hero from "@/components/Home/Hero";
 import Features from "@/components/Home/Features";
 import Cook from "@/components/Home/Cook";
 import Expert from "@/components/Home/Expert";
 import Gallery from "@/components/Home/Gallery";
 import Newsletter from "@/components/Home/Newsletter";
-import { Metadata } from "next";
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-
-export const metadata: Metadata = {
-  title: "虛擬病人對話系統 - 首頁",
-  description: "通過與虛擬病人的互動，提升醫護人員的溝通技能和臨床決策能力",
-};
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
+
+  // 檢查用戶是否已登入
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   return (
     <main className="dark:bg-gray-900">
-      {/* 英雄區域 */}
-      <section className="bg-gradient-to-r from-blue-50 to-indigo-100 dark:bg-gradient-to-r dark:from-gray-800 dark:to-gray-900 py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-10 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                虛擬病人對話訓練系統
-              </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-                通過與虛擬病人的互動，提升醫護人員的溝通技能和臨床決策能力
-              </p>
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <Link href="/register">
-                  <Button size="lg" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800">
-                    立即註冊
-                  </Button>
-                </Link>
-                <Link href="/login">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-gray-800">
-                    登入系統
-                  </Button>
-                </Link>
+      {/* 英雄區域 - 根據登入狀態條件渲染 */}
+      {!isLoggedIn ? (
+        <section className="bg-gradient-to-r from-blue-50 to-indigo-100 dark:bg-gradient-to-r dark:from-gray-800 dark:to-gray-900 py-20">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-center">
+              <div className="md:w-1/2 mb-10 md:mb-0">
+                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                  虛擬病人對話訓練系統
+                </h1>
+                <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                  通過與虛擬病人的互動，提升醫護人員的溝通技能和臨床決策能力
+                </p>
+                <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                  <Link href="/register">
+                    <Button size="lg" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800">
+                      立即註冊
+                    </Button>
+                  </Link>
+                  <Link href="/login">
+                    <Button variant="outline" size="lg" className="w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-gray-800">
+                      登入系統
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              <div className="md:w-1/2">
+                <Image
+                  src="/images/patient.png"
+                  alt="虛擬病人系統"
+                  width={500}
+                  height={500}
+                  className="rounded-lg shadow-xl"
+                />
               </div>
             </div>
-            <div className="md:w-1/2">
-              <Image
-                src="/images/patient.png"
-                alt="虛擬病人系統"
-                width={500}
-                height={500}
-                className="rounded-lg shadow-xl"
-              />
-            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="bg-gradient-to-r from-blue-50 to-indigo-100 dark:bg-gradient-to-r dark:from-gray-800 dark:to-gray-900 py-12">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              歡迎回到虛擬病人系統
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
+              繼續您的臨床溝通訓練
+            </p>
+            <Link href="/dashboard">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800">
+                前往儀表板
+              </Button>
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* 特色區域 */}
-      <section className="bg-white dark:bg-gray-900 py-20">
+      <section id="features" className="bg-white dark:bg-gray-900 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">系統特色</h2>
@@ -104,7 +130,7 @@ export default function Home() {
       </section>
 
       {/* 如何工作區域 */}
-      <section className="bg-gray-50 dark:bg-gray-800 py-20">
+      <section id="how-to-use" className="bg-gray-50 dark:bg-gray-800 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">如何使用</h2>
