@@ -14,7 +14,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-// 类型定义
+// 類型定義
 interface ResultData {
   id: string;
   patientName: string;
@@ -43,55 +43,55 @@ export default function ResultPage() {
   const { id } = params;
 
   useEffect(() => {
-    // 检查用户是否已登录
+    // 檢查用戶是否已登錄
     const token = localStorage.getItem('token');
     if (!token) {
       router.push('/login');
       return;
     }
 
-    // 获取评分结果数据
+    // 獲取評分結果數據
     const fetchResultData = async () => {
       try {
-        // 模拟API调用
-        // 实际项目中应该替换为真实的API调用
+        // 模擬API調用
+        // 實際項目中應該替換為真實的API調用
         // const response = await axios.get(`/api/conversation/result/${id}`, {
         //   headers: { Authorization: `Bearer ${token}` }
         // });
         
-        // 模拟数据
+        // 模擬數據
         const mockResultData: ResultData = {
           id: id as string,
-          patientName: '张三 - 发热腹泻',
+          patientName: '張三 - 發熱腹瀉',
           date: '2023-05-15',
-          duration: '15分钟',
+          duration: '15分鐘',
           totalScore: 92,
           categories: [
             {
-              name: '礼貌性问题',
+              name: '禮貌性問題',
               score: 20,
               maxScore: 20,
               questions: [
                 {
-                  question: '询问患者姓名',
+                  question: '詢問患者姓名',
                   asked: true,
                   score: 5,
                   maxScore: 5
                 },
                 {
-                  question: '询问患者年龄',
+                  question: '詢問患者年齡',
                   asked: true,
                   score: 5,
                   maxScore: 5
                 },
                 {
-                  question: '询问患者职业',
+                  question: '詢問患者職業',
                   asked: true,
                   score: 5,
                   maxScore: 5
                 },
                 {
-                  question: '询问患者住址',
+                  question: '詢問患者住址',
                   asked: true,
                   score: 5,
                   maxScore: 5
@@ -99,30 +99,30 @@ export default function ResultPage() {
               ]
             },
             {
-              name: '主诉相关问题',
+              name: '主訴相關問題',
               score: 35,
               maxScore: 40,
               questions: [
                 {
-                  question: '询问发热程度',
+                  question: '詢問發熱程度',
                   asked: true,
                   score: 10,
                   maxScore: 10
                 },
                 {
-                  question: '询问发热持续时间',
+                  question: '詢問發熱持續時間',
                   asked: true,
                   score: 10,
                   maxScore: 10
                 },
                 {
-                  question: '询问腹泻频率',
+                  question: '詢問腹瀉頻率',
                   asked: true,
                   score: 10,
                   maxScore: 10
                 },
                 {
-                  question: '询问腹泻性质',
+                  question: '詢問腹瀉性質',
                   asked: true,
                   score: 5,
                   maxScore: 10
@@ -130,30 +130,30 @@ export default function ResultPage() {
               ]
             },
             {
-              name: '相关症状问题',
+              name: '相關症狀問題',
               score: 37,
               maxScore: 40,
               questions: [
                 {
-                  question: '询问是否有呕吐',
+                  question: '詢問是否有嘔吐',
                   asked: true,
                   score: 10,
                   maxScore: 10
                 },
                 {
-                  question: '询问是否有腹痛',
+                  question: '詢問是否有腹痛',
                   asked: true,
                   score: 10,
                   maxScore: 10
                 },
                 {
-                  question: '询问是否有食欲变化',
+                  question: '詢問是否有食慾變化',
                   asked: true,
                   score: 10,
                   maxScore: 10
                 },
                 {
-                  question: '询问是否有头痛',
+                  question: '詢問是否有頭痛',
                   asked: false,
                   score: 7,
                   maxScore: 10
@@ -165,8 +165,8 @@ export default function ResultPage() {
         
         setResultData(mockResultData);
       } catch (err) {
-        console.error('获取评分结果数据失败:', err);
-        setError('无法加载评分结果数据，请稍后再试');
+        console.error('獲取評分結果數據失敗:', err);
+        setError('無法加載評分結果數據，請稍後再試');
       } finally {
         setIsLoading(false);
       }
@@ -195,7 +195,7 @@ export default function ResultPage() {
             </div>
             <div className="ml-3">
               <p className="text-sm text-red-700">
-                {error || '无法加载评分结果数据'}
+                {error || '無法加載評分結果數據'}
               </p>
             </div>
           </div>
@@ -208,13 +208,13 @@ export default function ResultPage() {
     <DashboardLayout>
       <div className="space-y-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">对话评分结果</h1>
+          <h1 className="text-2xl font-bold text-gray-900">對話評分結果</h1>
           <p className="mt-1 text-sm text-gray-500">
-            查看您与虚拟病人的对话评分详情
+            查看您與虛擬病人的對話評分詳情
           </p>
         </div>
 
-        {/* 评分概览 */}
+        {/* 評分概覽 */}
         <div className="bg-white shadow rounded-lg overflow-hidden">
           <div className="px-4 py-5 sm:px-6">
             <h3 className="text-lg leading-6 font-medium text-gray-900">
@@ -231,7 +231,7 @@ export default function ResultPage() {
                   <Award className="h-6 w-6 text-blue-600" />
                 </div>
                 <div className="ml-5">
-                  <p className="text-sm font-medium text-gray-500">总分</p>
+                  <p className="text-sm font-medium text-gray-500">總分</p>
                   <p className="text-2xl font-semibold text-gray-900">
                     {resultData.totalScore}
                     <span className="text-sm text-gray-500">/100</span>
@@ -243,7 +243,7 @@ export default function ResultPage() {
                   <Clock className="h-6 w-6 text-green-600" />
                 </div>
                 <div className="ml-5">
-                  <p className="text-sm font-medium text-gray-500">对话时长</p>
+                  <p className="text-sm font-medium text-gray-500">對話時長</p>
                   <p className="text-2xl font-semibold text-gray-900">
                     {resultData.duration}
                   </p>
@@ -254,7 +254,7 @@ export default function ResultPage() {
                   <CheckCircle className="h-6 w-6 text-purple-600" />
                 </div>
                 <div className="ml-5">
-                  <p className="text-sm font-medium text-gray-500">完成状态</p>
+                  <p className="text-sm font-medium text-gray-500">完成狀態</p>
                   <p className="text-lg font-semibold text-green-600">
                     已完成
                   </p>
@@ -264,14 +264,14 @@ export default function ResultPage() {
           </div>
         </div>
 
-        {/* 分类评分详情 */}
+        {/* 分類評分詳情 */}
         <div className="bg-white shadow rounded-lg overflow-hidden">
           <div className="px-4 py-5 sm:px-6">
             <h3 className="text-lg leading-6 font-medium text-gray-900">
-              评分详情
+              評分詳情
             </h3>
             <p className="mt-1 max-w-2xl text-sm text-gray-500">
-              按问题类别划分的评分详情
+              按問題類別劃分的評分詳情
             </p>
           </div>
           <div className="border-t border-gray-200">
@@ -327,13 +327,13 @@ export default function ResultPage() {
           </div>
         </div>
 
-        {/* 开始反思按钮 */}
+        {/* 開始反思按鈕 */}
         <div className="flex justify-center">
           <Link 
             href={`/dashboard/reflection/${id}`}
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            开始反思
+            開始反思
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>

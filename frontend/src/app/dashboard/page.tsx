@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import DashboardLayout from '@/components/layouts/DashboardLayout';
 
-// 类型定义
+// 類型定義
 interface Conversation {
   id: string;
   patientName: string;
@@ -36,18 +36,18 @@ export default function Dashboard() {
   const router = useRouter();
 
   useEffect(() => {
-    // 检查用户是否已登录
+    // 檢查用戶是否已登錄
     const token = localStorage.getItem('token');
     if (!token) {
       router.push('/login');
       return;
     }
 
-    // 获取仪表板数据
+    // 獲取儀表板數據
     const fetchDashboardData = async () => {
       try {
-        // 模拟API调用
-        // 实际项目中应该替换为真实的API调用
+        // 模擬API調用
+        // 實際項目中應該替換為真實的API調用
         // const statsResponse = await axios.get('/api/dashboard/stats', {
         //   headers: { Authorization: `Bearer ${token}` }
         // });
@@ -56,7 +56,7 @@ export default function Dashboard() {
         //   headers: { Authorization: `Bearer ${token}` }
         // });
         
-        // 模拟数据
+        // 模擬數據
         const mockStats = {
           totalConversations: 12,
           averageScore: 85,
@@ -67,10 +67,10 @@ export default function Dashboard() {
         const mockConversations = [
           {
             id: '1',
-            patientName: '张三 - 发热腹泻',
+            patientName: '張三 - 發熱腹瀉',
             date: '2023-05-15',
             score: 92,
-            duration: '15分钟',
+            duration: '15分鐘',
             status: 'completed' as const
           },
           {
@@ -78,23 +78,23 @@ export default function Dashboard() {
             patientName: '李四 - 咳嗽胸痛',
             date: '2023-05-10',
             score: 78,
-            duration: '12分钟',
+            duration: '12分鐘',
             status: 'completed' as const
           },
           {
             id: '3',
-            patientName: '王五 - 头痛眩晕',
+            patientName: '王五 - 頭痛眩暈',
             date: '2023-05-05',
             score: 85,
-            duration: '18分钟',
+            duration: '18分鐘',
             status: 'completed' as const
           },
           {
             id: '4',
-            patientName: '赵六 - 腰背痛',
+            patientName: '趙六 - 腰背痛',
             date: '2023-04-28',
             score: 0,
-            duration: '进行中',
+            duration: '進行中',
             status: 'in_progress' as const
           }
         ];
@@ -102,8 +102,8 @@ export default function Dashboard() {
         setStats(mockStats);
         setRecentConversations(mockConversations);
       } catch (err) {
-        console.error('获取仪表板数据失败:', err);
-        setError('无法加载仪表板数据，请稍后再试');
+        console.error('獲取儀表板數據失敗:', err);
+        setError('無法加載儀表板數據，請稍後再試');
       } finally {
         setIsLoading(false);
       }
@@ -126,15 +126,15 @@ export default function Dashboard() {
     <DashboardLayout>
       <div className="space-y-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">仪表板</h1>
+          <h1 className="text-2xl font-bold text-gray-900">儀表板</h1>
           <p className="mt-1 text-sm text-gray-500">
-            查看您的学习进度和最近的对话记录
+            查看您的學習進度和最近的對話記錄
           </p>
         </div>
 
-        {/* 统计卡片 */}
+        {/* 統計卡片 */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {/* 总对话数 */}
+          {/* 總對話數 */}
           <div className="bg-white overflow-hidden shadow rounded-lg">
             <div className="p-5">
               <div className="flex items-center">
@@ -146,7 +146,7 @@ export default function Dashboard() {
                 <div className="ml-5 w-0 flex-1">
                   <dl>
                     <dt className="text-sm font-medium text-gray-500 truncate">
-                      总对话数
+                      總對話數
                     </dt>
                     <dd>
                       <div className="text-lg font-medium text-gray-900">
@@ -209,7 +209,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* 进行中案例 */}
+          {/* 進行中案例 */}
           <div className="bg-white overflow-hidden shadow rounded-lg">
             <div className="p-5">
               <div className="flex items-center">
@@ -221,7 +221,7 @@ export default function Dashboard() {
                 <div className="ml-5 w-0 flex-1">
                   <dl>
                     <dt className="text-sm font-medium text-gray-500 truncate">
-                      进行中案例
+                      進行中案例
                     </dt>
                     <dd>
                       <div className="text-lg font-medium text-gray-900">
@@ -235,15 +235,15 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* 最近对话 */}
+        {/* 最近對話 */}
         <div className="bg-white shadow rounded-lg">
           <div className="px-4 py-5 sm:px-6 flex justify-between items-center">
             <div>
               <h3 className="text-lg leading-6 font-medium text-gray-900">
-                最近对话
+                最近對話
               </h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                您最近的虚拟病人对话记录
+                您最近的虛擬病人對話記錄
               </p>
             </div>
             <Link 
@@ -268,13 +268,13 @@ export default function Dashboard() {
                       日期
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      时长
+                      時長
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       得分
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      状态
+                      狀態
                     </th>
                     <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                       操作
@@ -313,7 +313,7 @@ export default function Dashboard() {
                           </span>
                         ) : (
                           <span className="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                            进行中
+                            進行中
                           </span>
                         )}
                       </td>
@@ -323,14 +323,14 @@ export default function Dashboard() {
                             href={`/dashboard/result/${conversation.id}`}
                             className="text-blue-600 hover:text-blue-900"
                           >
-                            查看结果
+                            查看結果
                           </Link>
                         ) : (
                           <Link 
                             href={`/dashboard/conversation/${conversation.id}`}
                             className="text-blue-600 hover:text-blue-900"
                           >
-                            继续对话
+                            繼續對話
                           </Link>
                         )}
                       </td>
@@ -342,13 +342,13 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* 开始新对话按钮 */}
+        {/* 開始新對話按鈕 */}
         <div className="flex justify-center">
           <Link 
             href="/dashboard/conversation/new"
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            开始新对话
+            開始新對話
           </Link>
         </div>
       </div>

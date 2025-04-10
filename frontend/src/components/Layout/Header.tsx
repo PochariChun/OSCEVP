@@ -63,6 +63,19 @@ const Header = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  // 滾動到指定區塊
+  const scrollToSection = (sectionId: string) => {
+    if (pathname !== '/') {
+      router.push(`/#${sectionId}`);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
@@ -94,18 +107,18 @@ const Header = () => {
             >
               首頁
             </Link>
-            <Link
-              href="/about"
+            <button
+              onClick={() => scrollToSection('how-to-use')}
               className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
             >
-              關於我們
-            </Link>
-            <Link
-              href="/features"
+              如何使用
+            </button>
+            <button
+              onClick={() => scrollToSection('features')}
               className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
             >
               系統特色
-            </Link>
+            </button>
             {isLoggedIn && (
               <Link
                 href="/dashboard"
@@ -205,20 +218,18 @@ const Header = () => {
               >
                 首頁
               </Link>
-              <Link
-                href="/about"
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 py-2"
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                onClick={() => scrollToSection('how-to-use')}
+                className="text-left text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 py-2"
               >
-                關於我們
-              </Link>
-              <Link
-                href="/features"
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 py-2"
-                onClick={() => setIsMenuOpen(false)}
+                如何使用
+              </button>
+              <button
+                onClick={() => scrollToSection('features')}
+                className="text-left text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 py-2"
               >
                 系統特色
-              </Link>
+              </button>
               {isLoggedIn && (
                 <Link
                   href="/dashboard"

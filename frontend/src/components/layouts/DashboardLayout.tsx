@@ -24,25 +24,25 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const router = useRouter();
 
   const handleLogout = () => {
-    // 清除本地存储的token
+    // 清除本地存儲的token
     localStorage.removeItem('token');
-    // 重定向到登录页面
+    // 重定向到登錄頁面
     router.push('/login');
   };
 
   const navigation = [
-    { name: '仪表板', href: '/dashboard', icon: Home },
-    { name: '开始对话', href: '/dashboard/conversation', icon: MessageSquare },
-    { name: '历史记录', href: '/dashboard/history', icon: History },
-    { name: '设置', href: '/dashboard/settings', icon: Settings },
+    { name: '儀表板', href: '/dashboard', icon: Home },
+    { name: '開始對話', href: '/dashboard/conversation', icon: MessageSquare },
+    { name: '歷史記錄', href: '/dashboard/history', icon: History },
+    { name: '設置', href: '/dashboard/settings', icon: Settings },
   ];
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* 移动端侧边栏 */}
+      {/* 移動端側邊欄 */}
       <div className="lg:hidden">
         <div className="fixed inset-0 flex z-40">
-          {/* 侧边栏背景遮罩 */}
+          {/* 側邊欄背景遮罩 */}
           {isSidebarOpen && (
             <div 
               className="fixed inset-0 bg-gray-600 bg-opacity-75"
@@ -50,7 +50,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             ></div>
           )}
 
-          {/* 侧边栏 */}
+          {/* 側邊欄 */}
           <div 
             className={`fixed inset-y-0 left-0 flex flex-col w-64 bg-white transform ${
               isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
@@ -60,11 +60,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <Link href="/dashboard" className="flex items-center">
                 <Image
                   src="/images/logo.svg"
-                  alt="虚拟病人系统"
+                  alt="虛擬病人系統"
                   width={40}
                   height={40}
                 />
-                <span className="ml-2 text-xl font-semibold">虚拟病人系统</span>
+                <span className="ml-2 text-xl font-semibold">虛擬病人系統</span>
               </Link>
               <button
                 onClick={() => setIsSidebarOpen(false)}
@@ -97,24 +97,24 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 className="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100"
               >
                 <LogOut className="mr-3 h-5 w-5" />
-                退出登录
+                退出登錄
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 桌面端侧边栏 */}
+      {/* 桌面端側邊欄 */}
       <div className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 lg:border-r lg:border-gray-200 lg:bg-white">
         <div className="flex items-center h-16 px-4 border-b">
           <Link href="/dashboard" className="flex items-center">
             <Image
               src="/images/logo.svg"
-              alt="虚拟病人系统"
+              alt="虛擬病人系統"
               width={40}
               height={40}
             />
-            <span className="ml-2 text-xl font-semibold">虚拟病人系统</span>
+            <span className="ml-2 text-xl font-semibold">虛擬病人系統</span>
           </Link>
         </div>
         <div className="flex-1 overflow-y-auto">
@@ -141,14 +141,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             className="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100"
           >
             <LogOut className="mr-3 h-5 w-5" />
-            退出登录
+            退出登錄
           </button>
         </div>
       </div>
 
-      {/* 主内容区域 */}
+      {/* 主內容區域 */}
       <div className="lg:pl-64">
-        {/* 顶部导航栏 */}
+        {/* 頂部導航欄 */}
         <div className="sticky top-0 z-10 flex items-center justify-between h-16 px-4 bg-white border-b lg:hidden">
           <button
             onClick={() => setIsSidebarOpen(true)}
@@ -159,7 +159,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <Link href="/dashboard">
             <Image
               src="/images/logo.svg"
-              alt="虚拟病人系统"
+              alt="虛擬病人系統"
               width={40}
               height={40}
             />
@@ -167,7 +167,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <div className="w-6"></div> {/* 占位元素，保持居中 */}
         </div>
 
-        {/* 页面内容 */}
+        {/* 頁面內容 */}
         <main className="p-4 sm:p-6 lg:p-8">
           {children}
         </main>

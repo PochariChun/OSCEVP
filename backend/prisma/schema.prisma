@@ -1,0 +1,47 @@
+model Conversation {
+  id          String   @id @default(uuid())
+  userId      String
+  patientId   String
+  startTime   DateTime
+  endTime     DateTime?
+  duration    Int?     // 以秒為單位
+  status      String   // "in_progress" 或 "completed"
+  totalScore  Int?
+  maxScore    Int?
+  
+  user        User     @relation(fields: [userId], references: [id])
+  patient     Patient  @relation(fields: [patientId], references: [id])
+  categories  ScoreCategory[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ScoreCategory {
+  id             String   @id @default(uuid())
+  conversationId String
+  name           String
+  totalScore     Int
+  maxScore       Int
+  
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  items          ScoreItem[]
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model ScoreItem {
+  id             String   @id @default(uuid())
+  categoryId     String
+  name           String
+  score          Int
+  maxScore       Int
+  completed      Boolean
+  subItems       String?  // 以JSON格式存儲細項
+  
+  category       ScoreCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+} 
